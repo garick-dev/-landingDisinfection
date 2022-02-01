@@ -1020,7 +1020,9 @@ body {
 .politic__outer > .text-block > h3:first-of-type {
     margin-top: 0;
 }
-
+.politic__row {
+    margin-top: 20px;
+}
 /*///////////////////////////////////////
 ////////////////MOBILE MENU///////////////////
 ////////////////////////////////////////
