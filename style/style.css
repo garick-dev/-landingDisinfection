@@ -315,9 +315,10 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
     box-sizing: border-box;
     padding: 35px 35px 65px 35px;
-    box-shadow: 0 0px 120px rgba(0, 0, 0, 0.03);
+    box-shadow: 0 0 120px rgba(0, 0, 0, 0.03);
     border-radius: 10px;
     transition: 0.2s ease-in;
     word-break: break-word;
@@ -491,7 +492,7 @@ body {
 .prices__content {
     margin-top: 50px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-wrap: wrap;
 }
 
@@ -1348,9 +1349,14 @@ body {
         max-width: calc(300px + (430 - 300) * ((100vw - 320px) / (992 - 320)));
     }
     .prices__column {
+        margin-right: 20px;
+        margin-bottom: 20px;
         box-shadow: 0 4px 120px rgb(0 0 0 / 10%);
         background: #FFFFFF;
-        margin-bottom: 20px;
+
+    }
+    .prices__column:last-of-type {
+        margin-right: 0;
     }
     .prices__column:after {
         opacity: 0.5;
@@ -1416,6 +1422,9 @@ body {
     .prices__content {
         flex-direction: column;
         align-items: center;
+    }
+    .prices__column {
+        margin-right: 0;
     }
     .prices__column:last-of-type {
         margin-bottom: 0;
