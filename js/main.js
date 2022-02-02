@@ -1,21 +1,13 @@
 document.addEventListener("DOMContentLoaded", (ev) => {
     const modalPoliticEl = document.querySelector(".modal_politic");
-    const burgerButtonEl = document.querySelector(".burger");
-    const menuEl = document.querySelector(".menu").innerHTML;
 
-    let burgerMenuMobileEl = `<div class="burger-menu">
-                        <div class="overlay overlay_burger-menu">
-                            <ul class="menu-mobile">
-                            ${menuEl}
-                            </ul>
-                        </div>
-                    </div>`;
+
 
     const showTabsText = () => {
         const itemAnswerEl = document.querySelectorAll(".answers__item");
         itemAnswerEl.forEach(element => {
             element.addEventListener("click", (ev) => {
-                if(ev.target && ev.target.classList.contains("answers__title") || ev.target && ev.target.classList.contains("answers__icon")) {
+                if(ev.target && ev.target.classList.contains("answers__row") || ev.target && ev.target.classList.contains("answers__icon") || ev.target && ev.target.classList.contains("answers__title")) {
                     const itemsArr = element.children;
                     for (let item of itemsArr) {
                        if (item.classList.contains("answers__text-block")) {
@@ -96,22 +88,43 @@ document.addEventListener("DOMContentLoaded", (ev) => {
 
     const closeForm = () => {
         document.addEventListener("click", (ev) => {
-            if (ev.target && ev.target.classList.contains("overlay") || ev.target && ev.target.classList.contains("menu__link")) {
+            if (ev.target && ev.target.classList.contains("overlay")) {
                 document.body.style.overflowY = "auto";
                 modalPoliticEl.classList.add("hidden");
-                const mobileMenuEl = document.querySelector(".burger-menu");
-                mobileMenuEl.parentNode.removeChild(mobileMenuEl);
             }
         })
     }
     closeForm();
 
     const showMobileMenu = () => {
-        burgerButtonEl.addEventListener("click", (ev) => {
-            const headerEl = document.querySelector(".header__left");
-            headerEl.insertAdjacentHTML("beforeend", burgerMenuMobileEl);
-            document.body.style.overflowY = "hidden";
+        document.addEventListener("click", (ev) => {
+            const menuEl = document.querySelector(".menu");
+            const burgerLineEl = document.querySelectorAll(".burger__line");
+
+            if (ev.target && ev.target.classList.contains("burger") || ev.target && ev.target.classList.contains("burger__line") || ev.target && ev.target.classList.contains("menu__link")) {
+                if (document.body.style.overflow === "hidden") {
+                    document.body.style.overflow = "auto";
+                } else {
+                    document.body.style.overflow = "hidden";
+                }
+                menuEl.classList.toggle("open");
+
+                burgerLineEl.forEach(item => {
+                    item.classList.toggle("clear");
+                });
+            }
         })
     }
     showMobileMenu();
+
+    const deactiveCheckBox = () => {
+        document.addEventListener("click", (ev) => {
+            if ( ev.target && ev.target.classList.contains("menu__link")) {
+                document.getElementById("burger__checkbox").checked = false;
+            }
+        })
+
+    }
+    deactiveCheckBox();
+
 });
