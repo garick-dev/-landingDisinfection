@@ -972,9 +972,7 @@ body {
     display: inline-block;
     padding-bottom: 3px;
 }
-.footer__politic:hover {
-    cursor: pointer;
-}
+
 .footer__politic::after {
     content: "";
     display: block;
@@ -1384,6 +1382,9 @@ body {
         opacity: 1;
     }
     .answers__row{
+        cursor: pointer;
+    }
+    .footer__politic:hover {
         cursor: pointer;
     }
 
