@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", (ev) => {
         }
         function hideLine (tabName) {
             tabLine.forEach(item => {
-                item.classList.contains(tabName) ? item.classList.add("hidden") : item.classList.remove("hidden");
+                item.classList.contains(tabName) ? item.classList.toggle("hidden") : item.classList.remove("hidden");
             })
         }
 
