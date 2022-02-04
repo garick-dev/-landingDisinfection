@@ -1430,7 +1430,7 @@ body {
     }
     .burger {
         position: absolute;
-        right: 5px;
+        right: 10px;
         top: 45px;
         transform: translateY(-50%);
         display: flex;
