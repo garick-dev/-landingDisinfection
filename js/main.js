@@ -1,36 +1,51 @@
 document.addEventListener("DOMContentLoaded", (ev) => {
-    const modalPoliticEl = document.querySelector(".modal_politic");
 
+    let tab = function () {
+        const tabRow = document.querySelectorAll('.answers__row');
+        const tabContent = document.querySelectorAll('.answers__text-block');
+        const tabLine = document.querySelectorAll(".answers__line");
+        let tabName;
 
+        tabRow.forEach(item => {
+            item.addEventListener('click', selectTabRow);
+        });
 
-    const showTabsText = () => {
-        const itemAnswerEl = document.querySelectorAll(".answers__item");
-        itemAnswerEl.forEach(element => {
-            element.addEventListener("click", (ev) => {
-                if(ev.target && ev.target.classList.contains("answers__row") || ev.target && ev.target.classList.contains("answers__icon") || ev.target && ev.target.classList.contains("answers__title")) {
-                    const itemsArr = element.children;
-                    for (let item of itemsArr) {
-                       if (item.classList.contains("answers__text-block")) {
-                           item.classList.toggle("hidden");
-                       }
-                    }
-                    for (let item of itemsArr) {
-                        if(item.classList.contains("answers__row")) {
-                           item.classList.toggle("clear");
-                            const rowEl = item.children;
-                            for (let el of rowEl) {
-                                if (el.classList.contains("answers__icon")) {
-                                    const icon = el.lastElementChild;
-                                    icon.classList.toggle("hidden");
-                                }
-                            }
-                        }
-                    }
+        function selectTabRow() {
+            tabRow.forEach(item => {
+                item.classList.remove('is-active');
+            });
+            this.classList.add('is-active');
+            tabName = this.getAttribute('data-tab-name');
+            selectTabContent(tabName);
+            hideLine(tabName);
+            clearRowStyle(tabName);
+        }
+
+        function selectTabContent(tabName) {
+            tabContent.forEach(item => {
+                 if (item.classList.contains(tabName)) {
+                     item.classList.toggle('is-active') ;
+                }
+                else {
+                    item.classList.remove('is-active');
                 }
             })
-        })
-    }
-    showTabsText();
+        }
+        function clearRowStyle (tabName) {
+            tabRow.forEach(item => {
+                item.classList.contains(tabName) ? item.classList.toggle("clear") : item.classList.remove("clear");
+            })
+        }
+        function hideLine (tabName) {
+            tabLine.forEach(item => {
+                item.classList.contains(tabName) ? item.classList.add("hidden") : item.classList.remove("hidden");
+            })
+        }
+
+    };
+
+    tab();
+
 
     const checkInputForm = () => {
         document.addEventListener("click", (ev) => {
@@ -74,6 +89,7 @@ document.addEventListener("DOMContentLoaded", (ev) => {
     }
     addMaskForPhone();
 
+    const modalPoliticEl = document.querySelector(".modal_politic");
     const showPolitic = () => {
         const politicBtnEl = document.querySelector(".footer__politic");
         politicBtnEl.addEventListener("click", (ev) => {
@@ -102,22 +118,17 @@ document.addEventListener("DOMContentLoaded", (ev) => {
             const burgerLineEl = document.querySelectorAll(".burger__line");
 
             if (ev.target && ev.target.classList.contains("burger") || ev.target && ev.target.classList.contains("burger__line") || ev.target && ev.target.classList.contains("menu__link")) {
-                if (document.body.style.overflow === "hidden") {
-                    document.body.style.overflow = "auto";
-                } else {
-                    document.body.style.overflow = "hidden";
-                }
                 menuEl.classList.toggle("open");
-
                 burgerLineEl.forEach(item => {
                     item.classList.toggle("clear");
                 });
+
             }
         })
     }
     showMobileMenu();
 
-    const deactiveCheckBox = () => {
+    const disabledCheckBox = () => {
         document.addEventListener("click", (ev) => {
             if ( ev.target && ev.target.classList.contains("menu__link")) {
                 document.getElementById("burger__checkbox").checked = false;
@@ -125,6 +136,6 @@ document.addEventListener("DOMContentLoaded", (ev) => {
         })
 
     }
-    deactiveCheckBox();
+    disabledCheckBox();
 
 });
